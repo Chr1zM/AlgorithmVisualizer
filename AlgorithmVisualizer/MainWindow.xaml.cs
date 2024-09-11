@@ -148,7 +148,6 @@ namespace AlgorithmVisualizer
 
         public async Task VisualizeArray(IReadOnlyList<int> array)
         {
-            // Hier wird die Visualisierung aktualisiert
             VisualizationCanvas.Children.Clear();
 
             var barWidth = (int)VisualizationCanvas.ActualWidth / array.Count;
@@ -172,7 +171,7 @@ namespace AlgorithmVisualizer
                 _frameIndex++;
             }
 
-            await Task.Delay(100 / (int)SpeedSlider.Value); // Pause nach jedem Schritt
+            await Task.Delay(100 / (int)SpeedSlider.Value);
         }
 
         private void SaveCanvasAsImage(Canvas canvas, string filePath)
