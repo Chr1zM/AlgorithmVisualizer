@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ComboBox x:Name="AlgorithmSelection" Width="200" Margin="5,12,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <ComboBox x:Name="AlgorithmSelection" Width="200" Margin="5,0,0,12" HorizontalAlignment="Left" VerticalAlignment="Bottom">
             <ComboBoxItem Content="QuickSort" />
             <ComboBoxItem Content="MergeSort" />
             <ComboBoxItem Content="BubbleSort" />
@@ -19,11 +19,11 @@
             <!-- Weitere Algorithmen -->
         </ComboBox>
 
-        <Button x:Name="StartButton" Content="Start" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="220,10,0,0" Click="StartButton_Click"/>
-        <Button x:Name="StopButton" Content="Stop" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="330,10,0,0" Click="StopButton_Click" />
+        <Button x:Name="StartButton" Content="Start" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="220,0,0,10" Click="StartButton_Click"/>
+        <Button x:Name="StopButton" Content="Stop" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="330,0,0,10" Click="StopButton_Click" />
 
-        <Canvas x:Name="VisualizationCanvas" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,50,0,0"/>
+        <Slider x:Name="SpeedSlider" Minimum="1" TickFrequency="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Maximum="9" Value="5" Width="200" Margin="0,0,5,12" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
-        <Slider x:Name="SpeedSlider" Minimum="1" TickFrequency="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Maximum="9" Value="5" Width="200" Margin="0,12,5,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Canvas x:Name="VisualizationCanvas" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,0,0,50"/>
     </Grid>
 </Window>

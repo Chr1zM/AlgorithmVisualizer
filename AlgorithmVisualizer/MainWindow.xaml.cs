@@ -78,6 +78,7 @@ namespace AlgorithmVisualizer
                     MessageBoxButton.OK,
                     MessageBoxImage.Information
                 );
+                return;
             }
 
             if (_isRecording)
@@ -155,7 +156,7 @@ namespace AlgorithmVisualizer
             {
                 var rect = new Rectangle
                 {
-                    Height = array[i] * 2, // Annahme: Die Höhe wird als 2 * Wert des Elements gesetzt
+                    Height = array[i] * 2, // Die Höhe wird als 2 * Wert des Elements gesetzt
                     Width = barWidth - 2, // Abstand zwischen den Balken
                     Fill = _isFinished ? Brushes.Green : Brushes.Blue
                 };
@@ -200,27 +201,16 @@ namespace AlgorithmVisualizer
             }
 
             using var firstImage = new Bitmap(imageFiles[0]);
-            var width = firstImage.Width % 2 == 0 ? firstImage.Width : firstImage.Width + 1;
-            var height = firstImage.Height % 2 == 0 ? firstImage.Height : firstImage.Height + 1;
+            var width = firstImage.Width % 2 == 0 ? firstImage.Width : firstImage.Width - 1;
+            var height = firstImage.Height % 2 == 0 ? firstImage.Height : firstImage.Height - 1;
 
             using var videoWriter = new VideoFileWriter();
-            videoWriter.Open(outputFileName, width, height, 20, VideoCodec.MPEG4);
+            videoWriter.Open(outputFileName, width, height, 25, VideoCodec.MPEG4);
 
             foreach (var imageFile in imageFiles)
             {
                 using var bitmap = new Bitmap(imageFile);
-                if (bitmap.Width != width || bitmap.Height != height)
-                {
-                    using var resizedBitmap = new Bitmap(width, height);
-                    using var graphics = Graphics.FromImage(resizedBitmap);
-
-                    graphics.DrawImage(bitmap, new System.Drawing.Rectangle(0, 0, width, height));
-                    videoWriter.WriteVideoFrame(resizedBitmap);
-                }
-                else
-                {
-                    videoWriter.WriteVideoFrame(bitmap);
-                }
+                videoWriter.WriteVideoFrame(bitmap);
             }
 
             videoWriter.Close();
