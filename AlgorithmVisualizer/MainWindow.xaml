@@ -24,6 +24,6 @@
 
         <Canvas x:Name="VisualizationCanvas" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,50,0,0"/>
 
-        <Slider x:Name="SpeedSlider" Minimum="0" Maximum="100" Value="50" Width="200" Margin="0,12,5,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+        <Slider x:Name="SpeedSlider" Minimum="1" TickFrequency="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Maximum="9" Value="5" Width="200" Margin="0,12,5,0" HorizontalAlignment="Right" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -19,6 +19,7 @@ namespace AlgorithmVisualizer
     public partial class MainWindow : Window
     {
         private CancellationTokenSource? _cancellationTokenSource;
+        private bool isFinished = false;
 
         public MainWindow()
         {
@@ -27,6 +28,7 @@ namespace AlgorithmVisualizer
 
         private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
+            isFinished = false;
             var array = GenerateRandomArray(100);
 
             // Ausgewählter Algorithmus aus der ComboBox
@@ -49,6 +51,8 @@ namespace AlgorithmVisualizer
             try
             {
                 await sortStrategy.Sort(array, this, _cancellationTokenSource.Token);
+                isFinished = true;
+                await VisualizeArray(array);
             }
             catch (OperationCanceledException)
             {
@@ -112,13 +116,13 @@ namespace AlgorithmVisualizer
                 {
                     Height = array[i] * 2, // Annahme: Die Höhe wird als 2 * Wert des Elements gesetzt
                     Width = barWidth - 2, // Abstand zwischen den Balken
-                    Fill = Brushes.Blue
+                    Fill = isFinished ? Brushes.Green : Brushes.Blue
                 };
                 Canvas.SetLeft(rect, i * barWidth);
                 Canvas.SetBottom(rect, 0);
                 VisualizationCanvas.Children.Add(rect);
             }
-            await Task.Delay(50); // 200ms Pause nach jedem Schritt
+            await Task.Delay(100 / (int)SpeedSlider.Value); // Pause nach jedem Schritt
         }
     }
 }
