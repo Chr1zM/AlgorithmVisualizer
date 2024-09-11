@@ -66,7 +66,7 @@ namespace AlgorithmVisualizer
 
         }
 
-        private async void StopButton_Click(object sender, RoutedEventArgs e)
+        private void StopButton_Click(object sender, RoutedEventArgs e)
         {
             _cancellationTokenSource?.Cancel();
         }
